@@ -1,5 +1,7 @@
 ﻿using PilotTask_MVC.DataAccess;
 using PilotTask_MVC.Models;
+using PilotTask_MVC.Repositories.Interfaces;
+using PilotTask_MVC.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +9,11 @@ using System.Web;
 
 namespace PilotTask_MVC.Services
 {
-    public class TaskService
+    public class TaskService : ITaskService
     {
-        private readonly TaskRepository _taskDAL;
+        private readonly ITaskRepository _taskDAL;
 
-        public TaskService(TaskRepository taskDAL)
+        public TaskService(ITaskRepository taskDAL)
         {
             _taskDAL = taskDAL;
         }

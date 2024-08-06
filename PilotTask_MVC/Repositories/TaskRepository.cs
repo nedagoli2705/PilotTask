@@ -1,4 +1,5 @@
 ﻿using PilotTask_MVC.Models;
+using PilotTask_MVC.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace PilotTask_MVC.DataAccess
 {
-    public class TaskRepository
+    public class TaskRepository : ITaskRepository
     {
         private readonly string _connectionString;
 

@@ -6,10 +6,11 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Configuration;
+using PilotTask_MVC.Repositories.Interfaces;
 
 namespace PilotTask_MVC.DataAccess
 {
-    public class ProfileRepository
+    public class ProfileRepository : IProfileRepository
     {
         private readonly string _connectionString;
 

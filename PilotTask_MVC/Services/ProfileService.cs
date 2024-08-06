@@ -1,5 +1,7 @@
 ﻿using PilotTask_MVC.DataAccess;
 using PilotTask_MVC.Models;
+using PilotTask_MVC.Repositories.Interfaces;
+using PilotTask_MVC.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +9,11 @@ using System.Web;
 
 namespace PilotTask_MVC.Services
 {
-    public class ProfileService
+    public class ProfileService : IProfileService
     {
-        private readonly ProfileRepository _profileDAL;
+        private readonly IProfileRepository _profileDAL;
 
-        public ProfileService(ProfileRepository profileDAL)
+        public ProfileService(IProfileRepository profileDAL)
         {
             _profileDAL = profileDAL;
         }

@@ -1,14 +1,15 @@
 ﻿using PilotTask_MVC.Models;
 using PilotTask_MVC.Services;
+using PilotTask_MVC.Services.Interfaces;
 using System.Web.Mvc;
 
 namespace PilotTask_MVC.Controllers
 {
     public class ProfilesController : Controller
     {
-        private readonly ProfileService _profileService;
+        private readonly IProfileService _profileService;
 
-        public ProfilesController(ProfileService profileService)
+        public ProfilesController(IProfileService profileService)
         {
             _profileService = profileService;
         }

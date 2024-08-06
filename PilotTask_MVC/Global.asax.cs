@@ -9,7 +9,9 @@ using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
 using PilotTask_MVC.DataAccess;
+using PilotTask_MVC.Repositories.Interfaces;
 using PilotTask_MVC.Services;
+using PilotTask_MVC.Services.Interfaces;
 
 namespace PilotTask_MVC
 {
@@ -17,24 +19,7 @@ namespace PilotTask_MVC
     {
         protected void Application_Start()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            var builder = new ContainerBuilder();
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
-
-            builder.RegisterType<ProfileRepository>()
-               .AsSelf()
-               .WithParameter("connectionString", connectionString);
-            builder.RegisterType<TaskRepository>()
-               .AsSelf()
-               .WithParameter("connectionString", connectionString);
-
-            builder.RegisterType<ProfileService>()
-               .AsSelf();
-            builder.RegisterType<TaskService>()
-               .AsSelf();
-            var container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            RegisterDependencies();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -43,6 +28,32 @@ namespace PilotTask_MVC
 
             
 
+        }
+
+        private void RegisterDependencies()
+        {
+            var builder = new ContainerBuilder();
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            builder.RegisterType<ProfileRepository>()
+               .As<IProfileRepository>()
+               .WithParameter("connectionString", connectionString);
+            builder.RegisterType<TaskRepository>()
+               .As<ITaskRepository>()
+               .WithParameter("connectionString", connectionString);
+
+            builder.RegisterType<ProfileService>()
+               .As<IProfileService>();
+            builder.RegisterType<TaskService>()
+               .As<ITaskService>();
+
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
+            
+            
+
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }
