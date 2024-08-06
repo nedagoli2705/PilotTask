@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="body-content" style="display: flex; height: 100vh;">
+        <div class="col-lg-2 col-xl-2" style="background: gray; padding: 20px;">
+            <ul class="list-unstyled">
+                <li>@Html.ActionLink("View All Profiles", "Index", "Profiles", null, new { @class = " text-white" })</li>
+                <li>@Html.ActionLink("View All Tasks", "Index", "Tasks", null, new { @class = " text-white" })</li>
+            </ul>
+            
+        </div>
+        <div class="col-lg-10 col-xl-10" style="padding: 20px;">
+            @RenderBody()
+            <hr />
+
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

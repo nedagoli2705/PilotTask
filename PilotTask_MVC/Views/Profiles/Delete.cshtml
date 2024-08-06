@@ -1,0 +1,36 @@
+﻿@model PilotTask_MVC.Models.Profile
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Profile</h2>
+
+<h3>Are you sure you want to delete this profile?</h3>
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>First Name</dt>
+        <dd>@Html.DisplayFor(model => model.FirstName)</dd>
+        <dt>Last Name</dt>
+        <dd>@Html.DisplayFor(model => model.LastName)</dd>
+        <dt>Date of Birth</dt>
+        <dd>@Html.DisplayFor(model => model.DateOfBirth)</dd>
+        <dt>Phone Number</dt>
+        <dd>@Html.DisplayFor(model => model.PhoneNumber)</dd>
+        <dt>Email</dt>
+        <dd>@Html.DisplayFor(model => model.EmailId)</dd>
+    </dl>
+
+    @using (Html.BeginForm("DeleteConfirmed", "Profiles", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ProfileId)
+
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
+

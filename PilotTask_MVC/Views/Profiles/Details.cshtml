@@ -1,0 +1,28 @@
+﻿@model PilotTask_MVC.Models.Profile
+@{
+    ViewBag.Title = "Profile Details";
+}
+
+<h2>Profile Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>First Name</dt>
+        <dd>@Html.DisplayFor(model => model.FirstName)</dd>
+        <dt>Last Name</dt>
+        <dd>@Html.DisplayFor(model => model.LastName)</dd>
+        <dt>Date of Birth</dt>
+        <dd>@Html.DisplayFor(model => model.DateOfBirth)</dd>
+        <dt>Phone Number</dt>
+        <dd>@Html.DisplayFor(model => model.PhoneNumber)</dd>
+        <dt>Email</dt>
+        <dd>@Html.DisplayFor(model => model.EmailId)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProfileId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
