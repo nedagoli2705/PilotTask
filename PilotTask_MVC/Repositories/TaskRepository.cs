@@ -100,40 +100,6 @@ namespace PilotTask_MVC.DataAccess
             return null;
         }
 
-        public List<Task> GetTasks()
-        {
-            var tasks = new List<Task>();
-
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                SqlCommand command = new SqlCommand("GetTasks", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        tasks.Add(new Task
-                        {
-                            Id = (int)reader["Id"],
-                            ProfileId = (int)reader["ProfileId"],
-                            TaskName = (string)reader["TaskName"],
-                            TaskDescription = (string)reader["TaskDescription"],
-                            StartTime = (DateTime)reader["StartTime"],
-                            Status = (int)reader["Status"],
-                            Profile = new Profile
-                            {
-                                ProfileId = (int)reader["ProfileId"],
-                                FirstName = (string)reader["FirstName"],
-                                LastName = (string)reader["LastName"]
-                            }
-                        });
-                    }
-                }
-            }
-            return tasks;
-        }
-
         public List<Task> GetTasksByProfileId(int profileId)
         {
             var tasks = new List<Task>();
@@ -155,7 +121,13 @@ namespace PilotTask_MVC.DataAccess
                             TaskName = (string)reader["TaskName"],
                             TaskDescription = (string)reader["TaskDescription"],
                             StartTime = (DateTime)reader["StartTime"],
-                            Status = (int)reader["Status"]
+                            Status = (int)reader["Status"],
+                            Profile = new Profile
+                            {
+                                ProfileId = (int)reader["ProfileId"],
+                                FirstName = (string)reader["FirstName"],
+                                LastName = (string)reader["LastName"]
+                            }
                         });
                     }
                 }

@@ -16,9 +16,10 @@ namespace PilotTask_MVC.Controllers
             _taskService = taskService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var tasks = _taskService.GetTasks();
+            ViewBag.ProfileId = id;
+            var tasks = _taskService.GetTasksByProfileId(id);
             return View(tasks);
         }
 
@@ -32,11 +33,11 @@ namespace PilotTask_MVC.Controllers
             return View(task);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int profileId)
         {
-            var profiles = _profileService.GetProfiles();
-            ViewBag.Profiles = new SelectList(profiles, "ProfileId", "FullName");
-            return View();
+            var model = new Task { ProfileId = profileId };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -46,16 +47,15 @@ namespace PilotTask_MVC.Controllers
             if (ModelState.IsValid)
             {
                 _taskService.CreateTask(task);
-                return RedirectToAction("Index", new { profileId = task.ProfileId });
+                return RedirectToAction("Index", new { id = task.ProfileId });
             }
             return View(task);
         }
 
         public ActionResult Edit(int id)
         {
-            var profiles = _profileService.GetProfiles();
             var task = _taskService.GetTaskById(id);
-            ViewBag.Profiles = new SelectList(profiles, "ProfileId", "FullName", task.ProfileId);
+
             if (task == null)
             {
                 return HttpNotFound();
@@ -70,7 +70,7 @@ namespace PilotTask_MVC.Controllers
             if (ModelState.IsValid)
             {
                 _taskService.UpdateTask(task);
-                return RedirectToAction("Index", new { profileId = task.ProfileId });
+                return RedirectToAction("Index", new { id = task.ProfileId });
             }
             return View(task);
         }
@@ -90,11 +90,13 @@ namespace PilotTask_MVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var task = _taskService.GetTaskById(id);
+            var profileId = task.ProfileId;
             if (task != null)
             {
                 _taskService.DeleteTask(id);
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction("Index", new { id = profileId });
         }
     }
 }

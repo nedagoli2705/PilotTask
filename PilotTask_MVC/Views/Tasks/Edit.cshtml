@@ -11,17 +11,8 @@
 
 <div class="form-horizontal">
     @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.ProfileId)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ProfileId, "Profile", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("ProfileId", ViewBag.Profiles as SelectList, "Select a Profile", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ProfileId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <h4>Task</h4>
-    <hr />
     @Html.ValidationSummary(true)
 
     <div class="form-group">
@@ -65,6 +56,6 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", new { profileId = Model.ProfileId })
+    @Html.ActionLink("Back to List", "Index", new { id = Model.ProfileId })
 </div>
 

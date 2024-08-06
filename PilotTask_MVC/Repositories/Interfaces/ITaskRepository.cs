@@ -11,7 +11,6 @@ namespace PilotTask_MVC.Repositories.Interfaces
         void UpdateTask(Task task);
         void DeleteTask(int taskId);
         Task GetTaskById(int taskId);
-        List<Task> GetTasks();
         List<Task> GetTasksByProfileId(int profileId);
     }
 }

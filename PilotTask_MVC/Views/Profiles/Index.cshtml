@@ -28,6 +28,7 @@
             <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
             <td>@Html.DisplayFor(modelItem => item.EmailId)</td>
             <td>
+                @Html.ActionLink("Tasks", "Index", "Tasks", new { id = item.ProfileId }, null) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.ProfileId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ProfileId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ProfileId })

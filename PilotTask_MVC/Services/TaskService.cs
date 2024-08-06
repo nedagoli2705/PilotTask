@@ -38,9 +38,9 @@ namespace PilotTask_MVC.Services
             return _taskDAL.GetTaskById(taskId);
         }
 
-        public List<Task> GetTasks()
+        public List<Task> GetTasksByProfileId(int profileId)
         {
-            return _taskDAL.GetTasks();
+            return _taskDAL.GetTasksByProfileId(profileId);
         }
     }
 }

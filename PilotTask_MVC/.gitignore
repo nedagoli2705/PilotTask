@@ -1,2 +1,49 @@
 # Ignore Visual Studio specific files
-.vs/*
+# Build results
+bin/
+obj/
+packages/
+publish/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tlog
+*.tmp
+*.temp
+*.cache
+*.csproj.user
+*.DotSettings.user
+
+# Visual Studio specific files
+.vs/
+
+# Rider specific files
+.idea/
+
+# Database files
+*.mdf
+*.ldf
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Bower
+bower_components/
+
+# Resharper
+_ReSharper*/
+
+# Custom files
+MyGeneratedFiles/
+CustomToolOutput/
